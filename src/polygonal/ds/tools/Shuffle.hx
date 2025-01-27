@@ -20,7 +20,7 @@ package polygonal.ds.tools;
 
 class Shuffle
 {
-	static var f:Void->Float = () -> Math.random();
+	static var f:Void->Float = function() { return Math.random(); };
 	
 	/**
 		Assign a function to generate random numbers in the interval [0, 1).

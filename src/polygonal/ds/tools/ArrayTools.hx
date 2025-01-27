@@ -442,7 +442,7 @@ class ArrayTools
 	/**
 		Compares the elements of `a` and `b` by using the given `eq` function.
 	**/
-	public static function equals<T>(a:Array<T>, b:Array<T>, eq:(a:T, b:T)->Bool):Bool
+	public static function equals<T>(a:Array<T>, b:Array<T>, eq:T->T->Bool):Bool
 	{
 		if (a.length != b.length) return false;
 		var i = 0;
