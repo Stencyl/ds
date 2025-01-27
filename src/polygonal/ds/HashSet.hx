@@ -27,6 +27,12 @@ import polygonal.ds.tools.Assert.assert;
 import polygonal.ds.tools.GrowthRate;
 import polygonal.ds.tools.MathTools;
 
+#if (haxe_ver >= 4.1)
+import Std.isOfType;
+#else
+import Std.is as isOfType;
+#end
+
 using polygonal.ds.tools.NativeArrayTools;
 
 /**
@@ -525,7 +531,7 @@ class HashSet<T:Hashable> implements Set<T>
 					
 					if (v != null)
 					{
-						assert(Std.isOfType(v, Cloneable), "element is not of type Cloneable");
+						assert(isOfType(v, Cloneable), "element is not of type Cloneable");
 						
 						dst.set(i, cast(v, Cloneable<Dynamic>).clone());
 					}

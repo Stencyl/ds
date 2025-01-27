@@ -21,6 +21,12 @@ package polygonal.ds;
 import haxe.EnumFlags;
 import haxe.ds.Vector;
 
+#if (haxe_ver >= 4.1)
+import Std.isOfType;
+#else
+import Std.is as isOfType;
+#end
+
 /**
 	C printf implementation
 	
@@ -89,14 +95,14 @@ class Printf
 				case Tag(type, tagArgs):
 					if (tagArgs.width == null)
 					{
-						if (!Std.isOfType(args[argIndex], Int))
+						if (!isOfType(args[argIndex], Int))
 							throw new PrintfError("invalid 'width' argument");
 						tagArgs.width = args[argIndex++];
 					}
 					
 					if (tagArgs.precision == null)
 					{
-						if (!Std.isOfType(args[argIndex], Int))
+						if (!isOfType(args[argIndex], Int))
 							throw new PrintfError("invalid 'precision' argument");
 						tagArgs.precision = args[argIndex++];
 					}

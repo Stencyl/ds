@@ -23,6 +23,12 @@ import polygonal.ds.tools.Assert.assert;
 import polygonal.ds.tools.MathTools;
 import polygonal.ds.tools.Shuffle;
 
+#if (haxe_ver >= 4.1)
+import Std.isOfType;
+#else
+import Std.is as isOfType;
+#end
+
 /**
 	A doubly linked list
 	
@@ -1217,7 +1223,7 @@ class Dll<T> implements List<T>
 		{
 			var srcNode = head;
 			
-			assert(Std.isOfType(head.val, Cloneable), "element is not of type Cloneable");
+			assert(isOfType(head.val, Cloneable), "element is not of type Cloneable");
 			
 			var e = cast(head.val, Cloneable<Dynamic>);
 			var dstNode = copy.head = new DllNode<T>(e.clone(), copy);
@@ -1235,7 +1241,7 @@ class Dll<T> implements List<T>
 				dstNode0 = dstNode;
 				var srcNode0 = srcNode;
 				
-				assert(Std.isOfType(srcNode.val, Cloneable), "element is not of type Cloneable");
+				assert(isOfType(srcNode.val, Cloneable), "element is not of type Cloneable");
 				
 				e = cast(srcNode.val, Cloneable<Dynamic>);
 				dstNode = dstNode.next = new DllNode<T>(e.clone(), copy);
@@ -1247,7 +1253,7 @@ class Dll<T> implements List<T>
 			
 			dstNode0 = dstNode;
 			
-			assert(Std.isOfType(srcNode.val, Cloneable), "element is not of type Cloneable");
+			assert(isOfType(srcNode.val, Cloneable), "element is not of type Cloneable");
 			
 			e = cast(srcNode.val, Cloneable<Dynamic>);
 			copy.tail = dstNode.next = new DllNode<T>(e.clone(), copy);
@@ -1328,7 +1334,7 @@ class Dll<T> implements List<T>
 					}
 					else
 					{
-						assert(Std.isOfType(p.val, Comparable), "element is not of type Comparable");
+						assert(isOfType(p.val, Comparable), "element is not of type Comparable");
 						
 						if (cast(p.val, Comparable<Dynamic>).compare(q.val) >= 0)
 						{
@@ -1440,7 +1446,7 @@ class Dll<T> implements List<T>
 			var p = n.prev;
 			var v = n.val;
 			
-			assert(Std.isOfType(p.val, Comparable), "element is not of type Comparable");
+			assert(isOfType(p.val, Comparable), "element is not of type Comparable");
 			
 			if (cast(p.val, Comparable<Dynamic>).compare(v) < 0)
 			{
@@ -1448,7 +1454,7 @@ class Dll<T> implements List<T>
 				
 				while (i.hasPrev())
 				{
-					assert(Std.isOfType(i.prev.val, Comparable), "element is not of type Comparable");
+					assert(isOfType(i.prev.val, Comparable), "element is not of type Comparable");
 					
 					if (cast(i.prev.val, Comparable<Dynamic>).compare(v) < 0)
 						i = i.prev;

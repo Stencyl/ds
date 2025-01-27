@@ -23,6 +23,12 @@ import polygonal.ds.tools.Assert.assert;
 import polygonal.ds.tools.MathTools;
 import polygonal.ds.tools.Shuffle;
 
+#if (haxe_ver >= 4.1)
+import Std.isOfType;
+#else
+import Std.is as isOfType;
+#end
+
 /**
 	A queue based on a linked list
 	
@@ -505,7 +511,7 @@ class LinkedQueue<T> implements Queue<T>
 			var node = mHead;
 			if (node != null)
 			{
-				assert(Std.isOfType(node.val, Cloneable), "element is not of type Cloneable");
+				assert(isOfType(node.val, Cloneable), "element is not of type Cloneable");
 				
 				copy.mHead = copy.mTail = new LinkedQueueNode<T>(cast(node.val, Cloneable<Dynamic>).clone());
 				copy.mHead.next = copy.mTail;
@@ -517,7 +523,7 @@ class LinkedQueue<T> implements Queue<T>
 				var t;
 				while (node != null)
 				{
-					assert(Std.isOfType(node.val, Cloneable), "element is not of type Cloneable");
+					assert(isOfType(node.val, Cloneable), "element is not of type Cloneable");
 					
 					t = new LinkedQueueNode<T>(cast(node.val, Cloneable<Dynamic>).clone());
 					copy.mTail = copy.mTail.next = t;

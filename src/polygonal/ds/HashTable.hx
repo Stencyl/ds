@@ -27,6 +27,12 @@ import polygonal.ds.tools.Assert.assert;
 import polygonal.ds.tools.GrowthRate;
 import polygonal.ds.tools.MathTools;
 
+#if (haxe_ver >= 4.1)
+import Std.isOfType;
+#else
+import Std.is as isOfType;
+#end
+
 using polygonal.ds.tools.NativeArrayTools;
 
 /**
@@ -732,7 +738,7 @@ class HashTable<K:Hashable, T> implements Map<K, T>
 				{
 					if (srcKeys.get(i) != null)
 					{
-						assert(Std.isOfType(srcVals.get(i), Cloneable), "element is not of type Cloneable");
+						assert(isOfType(srcVals.get(i), Cloneable), "element is not of type Cloneable");
 						
 						dstVals.set(i, cast(srcVals.get(i), Cloneable<Dynamic>).clone());
 					}

@@ -23,6 +23,12 @@ import polygonal.ds.tools.Assert.assert;
 import polygonal.ds.tools.MathTools;
 import polygonal.ds.tools.Shuffle;
 
+#if (haxe_ver >= 4.1)
+import Std.isOfType;
+#else
+import Std.is as isOfType;
+#end
+
 /**
 	A singly linked list
 	
@@ -1069,7 +1075,7 @@ class Sll<T> implements List<T>
 		{
 			var srcNode = head;
 			
-			assert(Std.isOfType(head.val, Cloneable), "element is not of type Cloneable");
+			assert(isOfType(head.val, Cloneable), "element is not of type Cloneable");
 			var e = cast(head.val, Cloneable<Dynamic>);
 			var dstNode = copy.head = new SllNode<T>(e.clone(), copy);
 			if (size == 1)
@@ -1081,13 +1087,13 @@ class Sll<T> implements List<T>
 			srcNode = srcNode.next;
 			for (i in 1...size - 1)
 			{
-				assert(Std.isOfType(srcNode.val, Cloneable), "element is not of type Cloneable");
+				assert(isOfType(srcNode.val, Cloneable), "element is not of type Cloneable");
 				e = cast(srcNode.val, Cloneable<Dynamic>);
 				dstNode = dstNode.next = new SllNode<T>(e.clone(), copy);
 				srcNode = srcNode.next;
 			}
 			
-			assert(Std.isOfType(srcNode.val, Cloneable), "element is not of type Cloneable");
+			assert(isOfType(srcNode.val, Cloneable), "element is not of type Cloneable");
 			e = cast(srcNode.val, Cloneable<Dynamic>);
 			copy.tail = dstNode.next = new SllNode<T>(e.clone(), copy);
 		}
@@ -1153,7 +1159,7 @@ class Sll<T> implements List<T>
 					}
 					else
 					{
-						assert(Std.isOfType(p.val, Comparable), "element is not of type Comparable");
+						assert(isOfType(p.val, Comparable), "element is not of type Comparable");
 						
 						if (cast(p.val, Comparable<Dynamic>).compare(q.val) >= 0)
 						{
@@ -1272,7 +1278,7 @@ class Sll<T> implements List<T>
 			val = v[i];
 			j = i;
 			
-			assert(Std.isOfType(v[j - 1], Comparable), "element is not of type Comparable");
+			assert(isOfType(v[j - 1], Comparable), "element is not of type Comparable");
 			
 			while ((j > 0) && cast(v[j - 1], Comparable<Dynamic>).compare(val) < 0)
 			{
@@ -1281,7 +1287,7 @@ class Sll<T> implements List<T>
 				
 				#if debug
 				if (j > 0)
-					assert(Std.isOfType(v[j - 1], Comparable), "element is not of type Comparable");
+					assert(isOfType(v[j - 1], Comparable), "element is not of type Comparable");
 				#end
 				
 			}

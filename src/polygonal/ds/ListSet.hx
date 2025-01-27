@@ -22,6 +22,12 @@ import polygonal.ds.tools.Assert.assert;
 import polygonal.ds.tools.GrowthRate;
 import polygonal.ds.tools.MathTools;
 
+#if (haxe_ver >= 4.1)
+import Std.isOfType;
+#else
+import Std.is as isOfType;
+#end
+
 using polygonal.ds.tools.NativeArrayTools;
 
 /**
@@ -227,7 +233,7 @@ class ListSet<T> implements Set<T>
 			{
 				for (val in set)
 				{
-					assert(Std.isOfType(val, Cloneable), "element is not of type Cloneable");
+					assert(isOfType(val, Cloneable), "element is not of type Cloneable");
 					
 					this.set(cast(val, Cloneable<Dynamic>).clone());
 				}
@@ -356,7 +362,7 @@ class ListSet<T> implements Set<T>
 		{
 			for (i in 0...size)
 			{
-				assert(Std.isOfType(src.get(i), Cloneable), "element is not of type Cloneable");
+				assert(isOfType(src.get(i), Cloneable), "element is not of type Cloneable");
 				
 				dst.set(i, cast(src.get(i), Cloneable<Dynamic>).clone());
 			}

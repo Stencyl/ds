@@ -27,6 +27,12 @@ import polygonal.ds.tools.Assert.assert;
 import polygonal.ds.tools.GrowthRate;
 import polygonal.ds.tools.MathTools;
 
+#if (haxe_ver >= 4.1)
+import Std.isOfType;
+#else
+import Std.is as isOfType;
+#end
+
 using polygonal.ds.tools.NativeArrayTools;
 
 /**
@@ -724,7 +730,7 @@ class IntHashTable<T> implements Map<Int, T>
 				{
 					if (hasKey(i))
 					{
-						assert(Std.isOfType(src.get(i), Cloneable), "element is not of type Cloneable");
+						assert(isOfType(src.get(i), Cloneable), "element is not of type Cloneable");
 						
 						dst.set(i, cast(src.get(i), Cloneable<Dynamic>).clone());
 					}

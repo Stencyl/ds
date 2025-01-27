@@ -22,6 +22,12 @@ import polygonal.ds.tools.ArrayTools;
 import polygonal.ds.tools.Assert.assert;
 import polygonal.ds.tools.MathTools;
 
+#if (haxe_ver >= 4.1)
+import Std.isOfType;
+#else
+import Std.is as isOfType;
+#end
+
 using polygonal.ds.tools.NativeArrayTools;
 
 /**
@@ -861,7 +867,7 @@ class BinaryTreeNode<T> implements Collection<T>
 				var n = stack[--top];
 				if (n.hasRight())
 				{
-					assert(Std.isOfType(n.right.val, Cloneable), "element is not of type Cloneable");
+					assert(isOfType(n.right.val, Cloneable), "element is not of type Cloneable");
 					
 					c.setRight(cast(n.right.val, Cloneable<Dynamic>).clone());
 					stack[top++] = n.right;
@@ -869,7 +875,7 @@ class BinaryTreeNode<T> implements Collection<T>
 				}
 				if (n.hasLeft())
 				{
-					assert(Std.isOfType(n.left.val, Cloneable), "element is not of type Cloneable");
+					assert(isOfType(n.left.val, Cloneable), "element is not of type Cloneable");
 					
 					c.setLeft(cast(n.left.val, Cloneable<Dynamic>).clone());
 					stack[top++] = n.left;

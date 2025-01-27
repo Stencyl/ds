@@ -22,6 +22,12 @@ import polygonal.ds.tools.Assert.assert;
 import polygonal.ds.tools.MathTools;
 import polygonal.ds.tools.Shuffle;
 
+#if (haxe_ver >= 4.1)
+import Std.isOfType;
+#else
+import Std.is as isOfType;
+#end
+
 using polygonal.ds.tools.NativeArrayTools;
 
 /**
@@ -1209,7 +1215,7 @@ class Array2<T> implements Collection<T>
 				var e:Cloneable<Dynamic>;
 				for (i in 0...size)
 				{
-					assert(Std.isOfType(src.get(i), Cloneable), "element is not of type Cloneable");
+					assert(isOfType(src.get(i), Cloneable), "element is not of type Cloneable");
 					
 					e = cast src.get(i);
 					dst.set(i, e.clone());

@@ -23,6 +23,12 @@ import polygonal.ds.tools.Assert.assert;
 import polygonal.ds.tools.MathTools;
 import polygonal.ds.tools.Shuffle;
 
+#if (haxe_ver >= 4.1)
+import Std.isOfType;
+#else
+import Std.is as isOfType;
+#end
+
 /**
 	A stack based on a linked list
 	
@@ -660,14 +666,14 @@ class LinkedStack<T> implements Stack<T>
 		{
 			var srcNode = mHead;
 			
-			assert(Std.isOfType(srcNode.val, Cloneable), "element is not of type Cloneable");
+			assert(isOfType(srcNode.val, Cloneable), "element is not of type Cloneable");
 			
 			var dstNode = copy.mHead = new LinkedStackNode<T>(cast(srcNode.val, Cloneable<Dynamic>).clone());
 			
 			srcNode = srcNode.next;
 			while (srcNode != null)
 			{
-				assert(Std.isOfType(srcNode.val, Cloneable), "element is not of type Cloneable");
+				assert(isOfType(srcNode.val, Cloneable), "element is not of type Cloneable");
 				
 				dstNode = dstNode.next = new LinkedStackNode<T>(cast(srcNode.val, Cloneable<Dynamic>).clone());
 				srcNode = srcNode.next;

@@ -21,6 +21,12 @@ package polygonal.ds;
 import polygonal.ds.tools.ArrayTools;
 import polygonal.ds.tools.Assert.assert;
 
+#if (haxe_ver >= 4.1)
+import Std.isOfType;
+#else
+import Std.is as isOfType;
+#end
+
 using polygonal.ds.tools.NativeArrayTools;
 
 /**
@@ -1440,7 +1446,7 @@ class Graph<T> implements Collection<T>
 		{
 			while (n != null)
 			{
-				assert(Std.isOfType(n.val, Cloneable), "element is not of type Cloneable");
+				assert(isOfType(n.val, Cloneable), "element is not of type Cloneable");
 				
 				m = copy.add(cast(n.val, Cloneable<Dynamic>).clone());
 				t[i++] = m;

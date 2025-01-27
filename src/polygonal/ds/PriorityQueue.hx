@@ -23,6 +23,12 @@ import polygonal.ds.tools.Assert.assert;
 import polygonal.ds.tools.GrowthRate;
 import polygonal.ds.tools.MathTools;
 
+#if (haxe_ver >= 4.1)
+import Std.isOfType;
+#else
+import Std.is as isOfType;
+#end
+
 using polygonal.ds.tools.NativeArrayTools;
 
 /**
@@ -565,7 +571,7 @@ class PriorityQueue<T:(Prioritizable)> implements Queue<T>
 			for (i in 1...size + 1)
 			{
 				e = src.get(i);
-				assert(Std.isOfType(e, Cloneable), "element is not of type Cloneable");
+				assert(isOfType(e, Cloneable), "element is not of type Cloneable");
 				
 				c = cast(e, Cloneable<Dynamic>).clone();
 				c.position = e.position;

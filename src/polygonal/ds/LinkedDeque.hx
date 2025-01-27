@@ -22,6 +22,12 @@ import polygonal.ds.tools.ArrayTools;
 import polygonal.ds.tools.Assert.assert;
 import polygonal.ds.tools.MathTools;
 
+#if (haxe_ver >= 4.1)
+import Std.isOfType;
+#else
+import Std.is as isOfType;
+#end
+
 /**
 	A deque is a "double-ended queue"
 	
@@ -524,7 +530,7 @@ class LinkedDeque<T> implements Deque<T>
 		{
 			var srcNode = mHead;
 			
-			assert(Std.isOfType(mHead.val, Cloneable), "element is not of type Cloneable");
+			assert(isOfType(mHead.val, Cloneable), "element is not of type Cloneable");
 			
 			var dstNode = copy.mHead = new LinkedDequeNode<T>(cast(mHead.val, Cloneable<Dynamic>).clone());
 			
@@ -541,7 +547,7 @@ class LinkedDeque<T> implements Deque<T>
 				dstNode0 = dstNode;
 				var srcNode0 = srcNode;
 				
-				assert(Std.isOfType(srcNode.val, Cloneable), "element is not of type Cloneable");
+				assert(isOfType(srcNode.val, Cloneable), "element is not of type Cloneable");
 				
 				dstNode = dstNode.next = new LinkedDequeNode<T>(cast(srcNode.val, Cloneable<Dynamic>).clone());
 				dstNode.prev = dstNode0;
@@ -550,7 +556,7 @@ class LinkedDeque<T> implements Deque<T>
 				srcNode = srcNode0.next;
 			}
 			
-			assert(Std.isOfType(srcNode.val, Cloneable), "element is not of type Cloneable");
+			assert(isOfType(srcNode.val, Cloneable), "element is not of type Cloneable");
 			
 			dstNode0 = dstNode;
 			copy.mTail = dstNode.next = new LinkedDequeNode<T>(cast(srcNode.val, Cloneable<Dynamic>).clone());
