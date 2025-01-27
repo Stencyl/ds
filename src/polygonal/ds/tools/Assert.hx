@@ -39,11 +39,17 @@ class Assert
 		macro public static inline function assert(predicateExpr:haxe.macro.Expr, ?message:haxe.macro.Expr)
 		{
 			var predicate  = new haxe.macro.Printer().printExpr(predicateExpr);
+			#if haxe4
 			var p          = haxe.macro.Context.currentPos();
 			var location   = haxe.macro.PositionTools.toLocation(p);
+			#end
 			var methodName = haxe.macro.Context.getLocalMethod();
 			var className  = haxe.macro.Context.getLocalClass().toString();
+			#if haxe4
 			var infos      = macro {fileName: $v{location.file}, lineNumber: $v{location.range.start.line}, className: $v{className}, methodName: $v{methodName}};
+			#else
+			var infos      = macro {fileName: $v{p.file}, lineNumber: 0, className: $v{className}, methodName: $v{methodName}};
+			#end
 			if (message.expr.match(EConst(CIdent("null"))))
 				return macro untyped polygonal.ds.tools.Assert._assert($e{predicateExpr}, $v{predicate}, $e{infos});
 			return macro untyped polygonal.ds.tools.Assert._assert($e{predicateExpr}, ${message} + "(" + $v{predicate} + ")", $e{infos});
