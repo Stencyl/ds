@@ -26,7 +26,7 @@ class Assert
 	#if (!debug || no_assert)
 	
 		#if runtime_assert
-		extern public static inline function assert(predicate:Bool, ?message:String) {}
+		#if haxe4 extern #else @:extern #end public static inline function assert(predicate:Bool, ?message:String) {}
 		#else
 		macro public static function assert(predicate:haxe.macro.Expr, rest:Array<haxe.macro.Expr>) return macro {}
 		#end

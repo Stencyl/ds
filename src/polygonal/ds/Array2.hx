@@ -1302,19 +1302,19 @@ class Array2Cell
 		this.y = y;
 	}
 	
-	extern public inline function equals(other:Array2Cell):Bool
+	#if haxe4 extern #else @:extern #end public inline function equals(other:Array2Cell):Bool
 	{
 		return x == other.x && y == other.y;
 	}
 	
-	extern public inline function set(x:Int, y:Int):Array2Cell
+	#if haxe4 extern #else @:extern #end public inline function set(x:Int, y:Int):Array2Cell
 	{
 		this.x = x;
 		this.y = y;
 		return this;
 	}
 	
-	extern public inline function of(other:Array2Cell):Array2Cell
+	#if haxe4 extern #else @:extern #end public inline function of(other:Array2Cell):Array2Cell
 	{
 		x = other.x;
 		y = other.y;

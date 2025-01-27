@@ -137,7 +137,7 @@ class TreeNode<T> implements Collection<T>
 		
 		A root node has no parent node.
 	**/
-	extern public inline function isRoot():Bool
+	#if haxe4 extern #else @:extern #end public inline function isRoot():Bool
 	{
 		return parent == null;
 	}
@@ -147,7 +147,7 @@ class TreeNode<T> implements Collection<T>
 		
 		A leaf node has no children.
 	**/
-	extern public inline function isLeaf():Bool
+	#if haxe4 extern #else @:extern #end public inline function isLeaf():Bool
 	{
 		return children == null;
 	}
@@ -157,7 +157,7 @@ class TreeNode<T> implements Collection<T>
 		
 		A child node has a parent node.
 	**/
-	extern public inline function isChild():Bool
+	#if haxe4 extern #else @:extern #end public inline function isChild():Bool
 	{
 		return valid(parent);
 	}
@@ -193,7 +193,7 @@ class TreeNode<T> implements Collection<T>
 	/**
 		Returns true if this node has a parent node.
 	**/
-	extern public inline function hasParent():Bool
+	#if haxe4 extern #else @:extern #end public inline function hasParent():Bool
 	{
 		return isChild();
 	}
@@ -201,7 +201,7 @@ class TreeNode<T> implements Collection<T>
 	/**
 		Returns true if this node has at least one child node.
 	**/
-	extern public inline function hasChildren():Bool
+	#if haxe4 extern #else @:extern #end public inline function hasChildren():Bool
 	{
 		return valid(children);
 	}
@@ -220,7 +220,7 @@ class TreeNode<T> implements Collection<T>
 	/**
 		Returns true if this node has a sibling to its right (`this.next` != null).
 	**/
-	extern public inline function hasNextSibling():Bool
+	#if haxe4 extern #else @:extern #end public inline function hasNextSibling():Bool
 	{
 		return valid(next);
 	}
@@ -228,7 +228,7 @@ class TreeNode<T> implements Collection<T>
 	/**
 		Returns true if this node has a sibling to its left (`this.prev` != null).
 	**/
-	extern public inline function hasPrevSibling():Bool
+	#if haxe4 extern #else @:extern #end public inline function hasPrevSibling():Bool
 	{
 		return valid(prev);
 	}
@@ -236,7 +236,7 @@ class TreeNode<T> implements Collection<T>
 	/**
 		Returns the leftmost sibling of this node.
 	**/
-	extern public inline function getFirstSibling():TreeNode<T>
+	#if haxe4 extern #else @:extern #end public inline function getFirstSibling():TreeNode<T>
 	{
 		return parent != null ? parent.children : null;
 	}
@@ -244,7 +244,7 @@ class TreeNode<T> implements Collection<T>
 	/**
 		Returns the rightmost sibling of this node.
 	**/
-	extern public inline function getLastSibling():TreeNode<T>
+	#if haxe4 extern #else @:extern #end public inline function getLastSibling():TreeNode<T>
 	{
 		return parent != null ? parent.mTail : null;
 	}
@@ -420,7 +420,7 @@ class TreeNode<T> implements Collection<T>
 	/**
 		The total number of child nodes (non-recursive).
 	**/
-	extern public inline function numChildren():Int
+	#if haxe4 extern #else @:extern #end public inline function numChildren():Int
 	{
 		return mExtraInfo >>> 16;
 	}
@@ -522,7 +522,7 @@ class TreeNode<T> implements Collection<T>
 	/**
 		Returns the leftmost child of this node or null if this node is a leaf node.
 	**/
-	extern public inline function getFirstChild():TreeNode<T>
+	#if haxe4 extern #else @:extern #end public inline function getFirstChild():TreeNode<T>
 	{
 		return children;
 	}
@@ -530,7 +530,7 @@ class TreeNode<T> implements Collection<T>
 	/**
 		Returns the rightmost child of this node or null if this node is a leaf node.
 	**/
-	extern public inline function getLastChild():TreeNode<T>
+	#if haxe4 extern #else @:extern #end public inline function getLastChild():TreeNode<T>
 	{
 		return mTail;
 	}
@@ -1386,7 +1386,7 @@ class TreeNode<T> implements Collection<T>
 	/**
 		Creates and returns a `TreeBuilder` object pointing to this node.
 	**/
-	extern public inline function getBuilder():TreeBuilder<T>
+	#if haxe4 extern #else @:extern #end public inline function getBuilder():TreeBuilder<T>
 	{
 		return new TreeBuilder<T>(this);
 	}
@@ -1806,7 +1806,7 @@ class TreeNode<T> implements Collection<T>
 		return h;
 	}
 	
-	extern inline function valid(node:TreeNode<T>):Bool
+	#if haxe4 extern #else @:extern #end inline function valid(node:TreeNode<T>):Bool
 	{
 		return node != null;
 	}
@@ -2124,7 +2124,7 @@ class TreeNode<T> implements Collection<T>
 		return copy;
 	}
 	
-	extern inline function popOffStack(top:TreeNode<T>):TreeNode<T>
+	#if haxe4 extern #else @:extern #end inline function popOffStack(top:TreeNode<T>):TreeNode<T>
 	{
 		var t = top;
 		top = top.mPrevInStack;
@@ -2133,7 +2133,7 @@ class TreeNode<T> implements Collection<T>
 		return top;
 	}
 	
-	extern inline function pushOnStack(top:TreeNode<T>, x:TreeNode<T>):TreeNode<T>
+	#if haxe4 extern #else @:extern #end inline function pushOnStack(top:TreeNode<T>, x:TreeNode<T>):TreeNode<T>
 	{
 		if (top != null)
 		{
@@ -2143,32 +2143,32 @@ class TreeNode<T> implements Collection<T>
 		return x;
 	}
 	
-	extern inline function incChildCount()
+	#if haxe4 extern #else @:extern #end inline function incChildCount()
 	{
 		mExtraInfo = (mExtraInfo & 0x0000FFFF) | ((numChildren() + 1) << 16);
 	}
 	
-	extern inline function decChildCount()
+	#if haxe4 extern #else @:extern #end inline function decChildCount()
 	{
 		mExtraInfo = (mExtraInfo & 0x0000FFFF) | ((numChildren() - 1) << 16);
 	}
 	
-	extern inline function setChildCount(x:Int)
+	#if haxe4 extern #else @:extern #end inline function setChildCount(x:Int)
 	{
 		mExtraInfo = (mExtraInfo & 0x0000FFFF) | (x << 16);
 	}
 	
-	extern inline function setTimeStamp(x:Int)
+	#if haxe4 extern #else @:extern #end inline function setTimeStamp(x:Int)
 	{
 		mExtraInfo = (mExtraInfo & 0xFFFF0000) | x;
 	}
 	
-	extern inline function getTimeStamp():Int
+	#if haxe4 extern #else @:extern #end inline function getTimeStamp():Int
 	{
 		return mExtraInfo & 0xFFFF;
 	}
 	
-	extern inline function incTimeStamp()
+	#if haxe4 extern #else @:extern #end inline function incTimeStamp()
 	{
 		mExtraInfo = (mExtraInfo & 0xFFFF0000) | (getTimeStamp() + 1);
 	}
